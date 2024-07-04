@@ -1,0 +1,100 @@
+set $mod Mod4
+set $acer DisplayPort-0
+set $aoc HDMI-A-0
+font pango:noto-fonts 8
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+floating_modifier $mod
+# tiling_drag modifier titlebar
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+m resize grow width 20 px 
+bindsym $mod+Shift+n resize shrink width 20 px 
+bindsym $mod+Shift+t resize shrink height 20 px
+bindsym $mod+Shift+y resize grow height 20 px
+bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+v split v
+workspace 1 output $acer
+workspace 2 output $acer
+workspace 3 output $acer
+workspace 4 output $aoc
+workspace 5 output $aoc
+workspace 6 output $aoc
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+
+
+bar {
+    status_command i3blocks
+    colors {
+    background #181818
+    statusline #ffffff
+    separator #555555
+
+    focused_workspace #333333 #333333 #ffffff
+    active_workspace #333333 #333333 #ffffff
+    inactive_workspace #181818 #181818 #ffffff
+    }
+}
+
+#exec --no-startup-id xrandr --output $acer --auto --right-of $aoc &
+#exec --no-startup-id xrandr --output $aoc --rotate left
+#exec --no-startup-id setxkbmap -layout br
+#exec --no-startup-id xmodmap ~/.Xmodmap
+#exec --no-startup-id feh --bg-max ~/Imagens/virgin_coronation.jpg
+
+# default gaps
+gaps inner 15
+gaps outer 10
+
+# gaps
+set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
