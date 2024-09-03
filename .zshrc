@@ -43,6 +43,13 @@ alias event_type="xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf 
 alias copytds-ssh="ssh -i '~/code/copytds/copytds-sp.pem' ubuntu@ec2-54-232-129-135.sa-east-1.compute.amazonaws.com"
 alias sshpeopleandquality="ssh peopleandq@ssh.peopleandquality.com.br"
 alias vpnwake="openvpn --config ~/vpn/gabriel.luz.ovpn"
+alias dcud="docker-compose up -d"
+alias dcd="docker-compose down"
+alias dp="docker ps"
+alias dsdpq="docker stop $(docker ps -q)"
+alias code="cd /home/luffy/code/"
+alias saudesimples-local="cd /home/luffy/code/saudesimples-local/"
+alias wake-v2="cd /home/luffy/code/painel-front-v2/"
 
 export GIT_EDITOR=nvim
 export GTK_MODULES="canberra-gtk-module"
@@ -53,6 +60,7 @@ bindkey -v
 
 alias setx='xmodmap ~/.Xmodmap'
 alias setkeybr='setxkbmap -layout br'
+alias setkeyansi='setxkbmap -layout us -variant intl'
 alias setup2Monitors='xrandr --output DisplayPort-0 --auto --right-of HDMI-A-0 &'
 alias rotateAocLeft='xrandr --output HDMI-A-0 --rotate left'
 alias bers='bundle exec rails s'
@@ -65,7 +73,7 @@ alias syncDev='git switch development; git pull origin development; rm -rf node_
 alias addComponentShadcn='npx shadcn-vue@latest add'
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
-export GITHUB_PACKAGES_TOKEN=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
+export GITHUB_PACKAGES_TOKEN=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
 export GITHUB_USERNAME=GabrielSSJ7
 export BUNDLE_RUBYGEMS__PKG__GITHUB__COM=$GITHUB_USERNAME:$GITHUB_PACKAGES_TOKEN
 
